@@ -66,6 +66,8 @@
 !endif
 !endif
 
+DEFINE FD_SIZE_IN_KB = 2048
+
 [BuildOptions]
   GCC:RELEASE_*_*_CC_FLAGS             = -DMDEPKG_NDEBUG
   INTEL:RELEASE_*_*_CC_FLAGS           = /D MDEPKG_NDEBUG
