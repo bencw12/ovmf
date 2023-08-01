@@ -172,6 +172,8 @@ VerifyBlob (
         ));
     }
 
+    Status = EFI_SUCCESS;
+
     return Status;
   }
 
