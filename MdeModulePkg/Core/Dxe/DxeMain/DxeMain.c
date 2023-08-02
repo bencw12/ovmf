@@ -8,6 +8,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "DxeMain.h"
 
+#include <sys/io.h>
+
 //
 // DXE Core Global Variables for Protocols from PEI
 //
@@ -243,6 +245,8 @@ DxeMain (
   EFI_VECTOR_HANDOFF_INFO       *VectorInfoList;
   EFI_VECTOR_HANDOFF_INFO       *VectorInfo;
   VOID                          *EntryPoint;
+
+  outb(0x22, 0x80);
 
   //
   // Setup the default exception handlers

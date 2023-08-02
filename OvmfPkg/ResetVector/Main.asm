@@ -36,6 +36,30 @@ Main16:
 
 BITS    32
 
+    mov     ecx, 0xC0010131
+    rdmsr
+    bt      eax, 1
+    jc      SevEsDebug
+
+    mov     al, 0x31
+    mov     dx, 0x80
+    out     dx, al
+    jmp     SevEsDebugEnd
+
+SevEsDebug:
+    mov     ecx, 0xC0010130
+    xor     eax, eax
+	xor     edx, edx
+    mov     edx, 0x2
+    shl     edx, 20
+	mov     eax, 0x14
+	wrmsr
+	rep vmmcall
+SevEsDebugEnd:
+
+    xor    eax, eax
+    xor    edx, edx
+    xor    ecx, ecx
     ; Clear the WorkArea header. The SEV probe routines will populate the
     ; work area when detected.
     mov     byte[WORK_AREA_GUEST_TYPE], 0

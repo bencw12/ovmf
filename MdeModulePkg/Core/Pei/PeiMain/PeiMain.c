@@ -8,6 +8,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "PeiMain.h"
 
+#include <sys/io.h>
+
 EFI_PEI_PPI_DESCRIPTOR  mMemoryDiscoveredPpi = {
   (EFI_PEI_PPI_DESCRIPTOR_PPI | EFI_PEI_PPI_DESCRIPTOR_TERMINATE_LIST),
   &gEfiPeiMemoryDiscoveredPpiGuid,
@@ -178,6 +180,8 @@ PeiCore (
   EFI_HOB_HANDOFF_INFO_TABLE      *HandoffInformationTable;
   EFI_PEI_TEMPORARY_RAM_DONE_PPI  *TemporaryRamDonePpi;
   UINTN                           Index;
+
+  outb(0x21, 0x80);
 
   //
   // Retrieve context passed into PEI Core

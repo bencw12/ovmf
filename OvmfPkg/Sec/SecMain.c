@@ -33,6 +33,8 @@
 #include <Library/CcProbeLib.h>
 #include "AmdSev.h"
 
+#include <sys/io.h>
+
 #define SEC_IDT_ENTRY_COUNT  34
 
 typedef struct _SEC_IDT_TABLE {
@@ -758,6 +760,8 @@ SecCoreStartupWithStack (
   UINT32                Index;
   volatile UINT8        *Table;
 
+  
+
  #if defined (TDX_GUEST_SUPPORTED)
   if (CcProbe () == CcGuestTypeIntelTdx) {
     //
@@ -871,6 +875,8 @@ SecCoreStartupWithStack (
   }
 
  #endif
+
+  outb(0x20, 0x80);
 
   DEBUG ((
     DEBUG_INFO,
