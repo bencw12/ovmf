@@ -66,7 +66,7 @@
 !endif
 !endif
 
-DEFINE FD_SIZE_IN_KB = 2048
+DEFINE FD_SIZE_IN_KB = 1024
 
 [BuildOptions]
   GCC:RELEASE_*_*_CC_FLAGS             = -DMDEPKG_NDEBUG
